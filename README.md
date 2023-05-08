@@ -13,10 +13,10 @@
 Write an introduction to provide an overview of the document.
 
 ## mini project 주제
-.
+PC방 관리 프로그램
 
 ### mini project에 대한 소개
-Write the content of subsection 1.1.
+PC방 관리자의  프로그램
 
 
 ## project에 포함시킬 기능 설명
