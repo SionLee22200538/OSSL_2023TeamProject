@@ -1,5 +1,7 @@
 # OSSL_2023TeamProject
 
+![pc방](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/PCRoom.jpeg)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -17,7 +19,7 @@ PC방 관리 프로그램
 
 ### mini project에 대한 소개
 PC방 관리자의 고객 관리 프로그램
-
+![dataType](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/dataType.png)
 
 
 ## project에 포함시킬 기능 설명
