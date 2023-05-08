@@ -1,7 +1,5 @@
 # OSSL_2023TeamProject
 
-![pc방](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/PCRoom.jpeg)
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -12,7 +10,9 @@
 - [mini project 주제](#mini-project-주제)
 
 ## Introduction
-Write an introduction to provide an overview of the document.
+2023년 1학기 OSS 2분반 이시온, 이윤석님의 팀 프로젝트 입니다!
+![pc방](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/PCRoom.jpeg)
+
 
 ## mini project 주제
 PC방 관리 프로그램
