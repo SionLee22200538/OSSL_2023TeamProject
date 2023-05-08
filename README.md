@@ -13,7 +13,7 @@
 Write an introduction to provide an overview of the document.
 
 ## mini project 주제
-Write the content of section 1.
+nenen.
 
 ### mini project에 대한 소개
 Write the content of subsection 1.1.
