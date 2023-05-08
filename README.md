@@ -23,16 +23,28 @@ PC방 관리자의 고객 관리 프로그램
 ![dataType](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/dataType.png)
 
 Customer 구조체 구성요소
+
+''' JAVA
+
 public class Customer {
+    
     String name;
+    
     String id;
+    
     char gender;
+    
     int age;
+    
     String startTime;
+    
     int num;
+    
+    
     String phoneNumber;
    }
 
+'''
 
 
 ## project에 포함시킬 기능 설명
@@ -46,11 +58,18 @@ public class Customer {
 - 좌석 표 출력
   좌석 표 출력을 실행하면 좌석 상태를 표(그림) 형태로 출력해줍니다.
   
+  
+'''java
+
   *************************************************************************************
   *             *             *              *               *            *           *
   *     O       *      X      *      O       *       O       *      X     *     O     *
   *             *             *              *               *            *           *
   *************************************************************************************
+'''
+
+  
+  
 
 - 미성년자 자동 로그아웃 시스템
   오후 10시 이후 미성년자들이 pc방 이용이 제한된다는 점을 가지고
@@ -60,6 +79,7 @@ public class Customer {
   
 - 결제 정산 시스템
 후불 결제 시스템을 활용하여 이용자가 이용을 중단했을 때 이용한 시간을 계산해서 이용한 시간만큼 일정 가격을 책정한다.
+
   - 이용 시간은 시스템 시간을 이용하여 사용자의 사용 시작시간을 기록하고, 사용의 사용 종료 시간을 기록하여 이 둘의 차로 계산합니다 .
   
 
