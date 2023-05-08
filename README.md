@@ -22,6 +22,18 @@ PC방 관리 프로그램
 PC방 관리자의 고객 관리 프로그램
 ![dataType](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/dataType.png)
 
+Customer 구조체 구성요소
+public class Customer {
+    String name;
+    String id;
+    char gender;
+    int age;
+    String startTime;
+    int num;
+    String phoneNumber;
+   }
+
+
 
 ## project에 포함시킬 기능 설명
 - CRUD 기능활용
