@@ -16,7 +16,8 @@ Write an introduction to provide an overview of the document.
 PC방 관리 프로그램
 
 ### mini project에 대한 소개
-PC방 관리자의 프로그램
+PC방 관리자의 고객 관리 프로그램
+
 
 
 ## project에 포함시킬 기능 설명
