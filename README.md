@@ -24,8 +24,8 @@ PC방 관리자의 고객 관리 프로그램
 
 Customer 구조체 구성요소
 
-''' JAVA
-
+<pre>
+<code>
 public class Customer {
     
     String name;
@@ -39,13 +39,12 @@ public class Customer {
     String startTime;
     
     int num;
-    
-    
+   
     String phoneNumber;
+    
    }
-
-'''
-
+ </code>
+ </pre>
 
 ## project에 포함시킬 기능 설명
 - CRUD 기능활용
@@ -59,14 +58,16 @@ public class Customer {
   좌석 표 출력을 실행하면 좌석 상태를 표(그림) 형태로 출력해줍니다.
   
   
-'''java
+<pre>
+<code>
 
   *************************************************************************************
   *             *             *              *               *            *           *
   *     O       *      X      *      O       *       O       *      X     *     O     *
   *             *             *              *               *            *           *
   *************************************************************************************
-'''
+</code>
+</pre>
 
   
   
