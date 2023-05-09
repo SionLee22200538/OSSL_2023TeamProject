@@ -34,13 +34,13 @@ public class Customer {
     
     char gender;
     
+    String phoneNumber;
+    
     int age;
     
     String startTime;
     
     int num;
-   
-    String phoneNumber;
     
    }
  </code>
