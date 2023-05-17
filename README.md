@@ -88,7 +88,7 @@ public class Customer {
 
 
 ## 개발환경 및 언어
-게발 언어: JAVA
+게발 언어: C
 
 
 ## 팀 구성원 소개 및 각 팀원이 맡은 역할
