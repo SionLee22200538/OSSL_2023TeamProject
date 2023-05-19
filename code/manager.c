@@ -43,3 +43,44 @@ int add_customer(customer_t *s) {
   scanf("%d", &(s->seat_num));
   return 1;
 }
+
+int read_file(customer_t *s[]) {
+  FILE *fp;
+  int count = 0;
+  fp = fopen("customer.txt", "r");
+  if (fp == NULL) {
+    printf("파일 열기 실패!\n");
+    return 0;
+  }
+  while (1) {
+    s[count] = (customer_t*)malloc(sizeof(customer_t));
+    int data = fscanf(fp, "%[^,],%[^,],%c %[^,],%d %c %f %c\n", s[count]->st_name, s[count]->st_id, &s[count]->fm, s[count]->st_major, &s[count]->abs_num, &s[count]->pf, &s[count]->grade, &s[count]->assignment);
+    if (data != 8) {
+      free(s[count]);
+      break;
+    }
+    count++;
+  }
+  if (count == 0) printf("불러올 데이터가 없습니다.\n");
+  else printf("%d명의 데이터 불러오기 성공!\n",count);
+  fclose(fp);
+  return count;
+}
+int read_file(customer_t *s[]) {
+  FILE *fp = fopen("customer.txt", "rt");
+  int count = 0;
+  if (fp == NULL)
+    return 0;
+
+  while (!feof(fp)) {
+    s[count] = (customer_t *)malloc(sizeof(customer_t));
+    fscanf(fp, "%s %s %c %s %d %s %d", s[count]->name, s[count]->id,
+           &(s[count]->gender), s[count]->phoneNumber, &(s[count]->age),
+           s[count]->startTime, &(s[count]->seat_num));
+    count++;
+  }
+
+  fclose(fp);
+  printf("=> 로딩 성공!\n");
+  return count;
+}
