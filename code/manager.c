@@ -119,6 +119,12 @@ void saveFile(customer_t *s[], int count) {
   printf("=> 저장 성공!\n");
 }
 int delete_customer(customer_t *s[], int index, int count) {
+  if (index < 0 || index >= count) {
+    printf("범위 초과!");
+    return 0;
+  }
+  else if (count==0)
+      printf("삭제할 데이터가 없습니다.\n");
 
   free(s[index]);
   for (int i = index; i < count - 1; i++) {
