@@ -133,3 +133,17 @@ int delete_customer(customer_t *s[], int index, int count) {
   printf("=> 삭제되었습니다!\n");
   return 1;
 }
+
+int pay(customer_t *s[], int index, int count) {
+
+    printf("\n[정산하기]\n");
+    printf("이름: %s\n", s[index]->name);
+    printf("좌석 번호: %d\n", s[index]->seat_num);
+    printf("입장 시간: %s\n", s[index]->startTime);
+    free(s[index]);
+    for (int i = index; i < count - 1; i++) {
+      s[i] = s[i + 1];
+    }
+    printf("결제가 완료되었습니다!\n");
+  return 1;
+}
