@@ -32,7 +32,7 @@ public class Customer {
     
     String id;
     
-    char gender;
+    unsigned char gender;
     
     String phoneNumber;
     
