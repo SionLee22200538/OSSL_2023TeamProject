@@ -16,6 +16,7 @@ int selectMenu() {
   printf("7. 미성년자 강제 종료\n");
   printf("8. 정산하기\n");
   printf("9. PC방 전체 조회\n");
+  printf("10. 좌석 확인\n");
   printf("0. 종료\n\n");
   printf("=> 원하는 메뉴 입력: ");
   scanf("%d", &menu);
