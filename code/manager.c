@@ -154,3 +154,15 @@ int pay(customer_t *s[], int index, int count) {
   }
   return 1;
 }
+void auto_Off(customer_t *s[], int count) {
+  printf("\n[미성년자 강제 종료]\n");
+  int underageCount = 0;
+  for (int i = 0; i < count; i++) {
+    if (s[i]->age < 19) {
+      printf("미성년자 %s의 컴퓨터를 종료합니다.\n", s[i]->name);
+      free(s[i]);
+      underageCount++;
+    }
+  }
+  printf("총 %d개의 미성년자 컴퓨터가 종료되었습니다.\n", underageCount);
+}
