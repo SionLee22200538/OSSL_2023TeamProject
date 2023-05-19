@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "customer.h" // 고객 데이터 헤더
-#include "manager.h" // 관리자를 위한 헤더
+#include "manager.h" 
 
 int main(void) {
   int row, column;
