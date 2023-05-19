@@ -73,7 +73,20 @@ int main(void) {
     else if (menu == 7) {
       auto_Off(s, count);
     }
-/* 시간되면 추후에 구현 
+
+    else if (menu == 8) {
+      read_Customer(s, count);
+      int num = 0;
+      printf("고객의 좌석 번호는 (취소 :0)? ");
+      scanf("%d", &num);
+      if (num == 0)
+        break;
+      int isUpdate = pay(s[num - 1]); // add_Customer()함수에서 데이터가 변경되었는지 확인 
+      if (isUpdate == 1)
+        printf("=> 결제 되었습니다!\n");
+    }
+    
+/* 시간되면 구현 
     else if (menu == 8) {
       recent_User(s, 0, count); 
     }
