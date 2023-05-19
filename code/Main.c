@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "customer.h" // 고객 관련 코드들
-#include "manager.h" // 관리자를 위한 코드들
+#include "customer.h" // 고객 데이터 헤더
+#include "manager.h" // 관리자를 위한 헤더
+
 int main(void) {
   int row, column;
   printf("가로 줄의 컴퓨터 수? ");
@@ -81,22 +82,10 @@ int main(void) {
       scanf("%d", &num);
       if (num == 0)
         break;
-      int isUpdate = pay(s[num - 1]); // add_Customer()함수에서 데이터가 변경되었는지 확인 
-      if (isUpdate == 1)
+      int isPay = pay(s, num, count); // add_Customer()함수에서 데이터가 변경되었는지 확인 
+      if (isPay == 1)
         printf("=> 결제 되었습니다!\n");
     }
-    
-/* 시간되면 구현 
-    else if (menu == 8) {
-      recent_User(s, 0, count); 
-    }
-    else if (menu == 9) {
-      rand_Customer(s, count);
-    }
-    else if(menu==10){
-      old_User(s, 0, count);
-    }
-      */
   }
   
     for (int i = 0; i < count; i++) { //프로그램 종료 후 메모리 free
