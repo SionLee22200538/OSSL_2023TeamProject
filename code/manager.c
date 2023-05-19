@@ -69,18 +69,23 @@ int read_file(customer_t *s[]) {
 int read_file(customer_t *s[]) {
   FILE *fp = fopen("customer.txt", "rt");
   int count = 0;
-  if (fp == NULL)
+  if (fp == NULL) {
+    printf("파일 열기 실패!\n");
     return 0;
-
+  }
   while (!feof(fp)) {
     s[count] = (customer_t *)malloc(sizeof(customer_t));
-    fscanf(fp, "%s %s %c %s %d %s %d", s[count]->name, s[count]->id,
+    int data = fscanf(fp, "%s %s %c %s %d %s %d", s[count]->name, s[count]->id,
            &(s[count]->gender), s[count]->phoneNumber, &(s[count]->age),
            s[count]->startTime, &(s[count]->seat_num));
+    if (data != 8) {
+      free(s[count]);
+      break;
+    }
     count++;
   }
-
+  if (count == 0) printf("불러올 데이터가 없습니다.\n");
+  else printf("%d명의 데이터 불러오기 성공!\n",count);
   fclose(fp);
-  printf("=> 로딩 성공!\n");
   return count;
 }
