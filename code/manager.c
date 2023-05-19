@@ -30,16 +30,16 @@ int add_customer(customer_t *s) {
   printf("ID: ");
   scanf("%s", s->id);
   printf("성별(M/F): ");
-  getchar(); // Clear the newline character from the previous input
+  getchar(); 
   scanf("%c", &(s->gender));
   printf("전화번호: ");
   scanf("%s", s->phoneNumber);
+  getchar();
   printf("나이: ");
   scanf("%d", &(s->age));
   printf("입장 시간: ");
   scanf("%s", s->startTime);
   printf("좌석 번호: ");
   scanf("%d", &(s->seat_num));
-
   return 1;
 }
