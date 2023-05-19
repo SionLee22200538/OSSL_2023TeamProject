@@ -1,209 +1,92 @@
 #include <stdio.h>
-#include<stdlib.h>
-#include<string.h>
-typedef struct{
-    char  name[100];
-    char type;
-    int price;
+#include <stdlib.h>
+#include <string.h>
+#include "customer.h" // 고객 관련 코드들
+#include "manager.h" // 관리자를 위한 코드들
+int main(void) {
+  int row, column;
+  printf("가로 줄의 컴퓨터 수? ");
+  scanf("%d", &row);
+  printf("세로 줄의 컴퓨터 수? ");
+  scanf("%d", &column);
+  customer_t *s[row*column]; //최대 컴퓨터 수 만큼 빈 고객 배열 만들기
+  
+  int count = 0;
+  count=read_file(s);  //현재 저장된 파일에서 사용중인 고객 수를 받아옴
 
-} MENU;
-int addScore(MENU *m);
-void readScore(MENU m);
-int updateScore(MENU *m);
-void listScore(MENU *m[], int count);
-int selectDataNo(MENU *m[], int count);
-
-void saveData(MENU **s, int count);
-int loadData(MENU **s);
-void searchName(MENU **s, int count);
-
-
-int selectMenu(){
-int menu;
-printf("\n*** PizzaYaho ***\n");
-printf("1. 조회 \n");
-printf("2. 추가 \n");
-printf("3. 수정 \n");
-printf("4. 삭제 \n");
-printf("5. 파일저장 \n");
-printf("6. 이름검색 \n");
-printf("0. 종료\n\n");
-printf("=> 원하는 메뉴는?");
-scanf("%d", &menu);
-return menu;
-}
-
-int main(void){ 
-MENU*sp[100];
-int index = 0;
-int count = 0, menu;
-
-count = loadData(sp);
-index = count;
-
-    while (1){
-        menu = selectMenu();
-        if (menu == 0) break;
-        if (menu == 1){
-            if(count > 0)
-                listScore(sp,index);
-            else
-                printf("데이터가 없습니다. \n");
+  int menu;
+  while (1) {
+    menu = selectMenu();
+    if (menu == 0)
+      break;
+    if (menu == 1) {
+      if (count != 0)
+        read_Customer(s, count);
+      else 
+        printf("데이터가 없습니다.\n");
+    } else if (menu == 2) {
+      s[count] = (customer_t*)malloc(sizeof(customer_t)); //배열에 메모리 할당
+      if (add_Customer(s[count])){
+        printf("=> 추가됨!\n");
+        count++;
+      }
+      else free(s[count]);
+    } else if (menu == 3) {
+      read_Customer(s, count);
+      int num = 0;
+      printf("번호는 (취소 :0)? ");
+      scanf("%d", &num);
+      if (num == 0)
+        break;
+      int isUpdate = add_Customer(s[num - 1]); // add_Customer()함수에서 데이터가 변경되었는지 확인 
+      if (isUpdate == 1)
+        printf("=> 수정됨!\n");
+    } else if (menu == 4) {
+      int num;
+      int yn;
+      if (count != 0) {
+        read_Customer(s, count);
+        printf("삭제하실 고객의 좌석 번호는 (취소 :0)? ");
+        scanf("%d", &num);
+        if (num != 0) {
+          printf("정말로 삭제하시겠습니까?(삭제 :1)" );
+          scanf("%d", &yn);
         }
-        else if (menu == 2){
-            sp[index] = (MENU*)malloc(sizeof(MENU));
-            count += addScore(sp[index++]);
+        if (yn == 1) {
+          int isDel = delete_Customer(s, num, count);
+          if (isDel == 1)
+            printf("=> 삭제됨!\n");
+          count--;
         }
-        else if (menu == 3){
-            int no = selectDataNo(sp,index);
-            if(no == 0){
-                printf("=> 취소됨!\n");
-                continue;
-            }
-            updateScore(sp[no-1]);
-        }
-        else if (menu == 4){
-            int no = selectDataNo(sp, index);
-            if(no == 0){
-                printf("=> 취소됨!\n");
-                continue;
-            }
-            int deleteok;
-            printf("정말로 삭제하시겠습니까?(삭제 :1)");
-            scanf("%d", &deleteok);
-            if(deleteok ==1){
-                if(sp[no -1]) free(sp[no-1]);
-                sp[no-1] = NULL;
-                 count --;
-                 printf("\n=> 삭제됨!\n");
-            } else printf("취소됨!\n");
-        }
-
-         else if (menu == 5){
-            saveData(sp, index);
-        }
-
-        else if (menu == 6){
-            searchName(sp, index);
-        }
-
+      }
     }
-printf("\n종료됨!\n");
-return 0;
-}
-
-
-
-void readScore(MENU m){
-
-
-     printf("     %d %c %s\n", m.price, m.type, m.name);
-    
-    
-
-    return;
-}
-
-int addScore(MENU *m){
-   printf("\n 메뉴명은?");
-     scanf(" %[^\n]s", m->name);
-    printf(" 메뉴종류(P/S/R)?");
-    scanf(" %c", &m->type);
-    printf(" 가격은?");
-    scanf("%d", &m->price);
-    
-    printf("=>추가됨!\n");
-
-    return 1;
-
-}
-
-int updateScore(MENU *m){
-    printf("\n 메뉴명은?");
-    scanf(" %[^\n]s", m->name);
-    printf(" 메뉴종류(P/S/R)?");
-    scanf(" %c", &m->type);
-    printf(" 가격은?");
-    scanf("%d", &m->price);
-
-    printf("=> 수정성공!\n");
-
-    return 1;
-}
-
-
-void listScore(MENU *m[], int count){
-    printf("================================\n");
-    for(int i=0; i<count ; i++){
-        if(m[i] == NULL) continue;
-        printf("%2d", i+1);
-        readScore(*m[i]);
+    else if (menu == 5){
+      saveFile(s, count);
+      printf("저장됨!\n");
     }
-    printf("\n");
-}
-
-int selectDataNo(MENU *m[], int count){
-    int no;
-    listScore(m, count);
-    printf("번호는 (취소 :0)?");
-    scanf("%d",&no);
-    return no;
-}
-
-void saveData(MENU **m, int count){
-    FILE *fp;
-    fp = fopen("menu.txt","wt");
-
-    for(int i=0; i<count ; i++){
-        if(m[i] == NULL)continue;
-        fprintf(fp,"     %d %c %s\n", m[i]->price, m[i]->type, m[i]->name);
-
+    else if (menu == 6){
+      char sName[20];
+      printf("검색할 이름은? ");
+      scanf("%s", sName);
+      nameSearch(s, count, sName);
     }
-    fclose(fp);
-    printf("==> 저장됨! ");
-}
-
-
-int loadData(MENU **m){
-    int count =0, i = 0;
-    FILE *fp;
-    fp = fopen("menu.txt","rt");
-
-    if(fp == NULL)
-    {
-        printf("\n=> 파일 없음\n");
-        return 0;
+    else if (menu == 7) {
+      auto_Off(s, count);
     }
-
-    for(; i<100 ; i++){
-        m[i] = (MENU*)malloc(sizeof(MENU));
-        fscanf(fp,"%s",m[i]->name);
-        if(feof(fp)) break;
-        fscanf(fp, "%d", &m[i]->price);
-        fscanf(fp, "%c", &m[i]->type);
-
+/* 시간되면 추후에 구현 
+    else if (menu == 8) {
+      recent_User(s, 0, count); 
     }
-    fclose(fp);
-    printf("=> 로딩 성공!\n");
-    return i;
-}
-
-void searchName(MENU **m, int count){
-    int scnt = 0;
-    char search [20];
-
-    printf("\n검색할 이름? ");
-    scanf("%s", search);
-
-   printf("================================\n");
-   for(int i =0; i <count ; i++){
-    if(m[i]->price == -1) continue;
-    if (strstr(m[i]->name, search)){
-        printf("%2d", i+1);
-        readScore(*m[i]);
-        scnt++;
+    else if (menu == 9) {
+      rand_Customer(s, count);
     }
-   }
-   if(scnt == 0) printf("=> 검색된 데이터 없음!");
-   printf("\n");
+    else if(menu==10){
+      old_User(s, 0, count);
+    }
+      */
+  }
+  
+    for (int i = 0; i < count; i++) { //프로그램 종료 후 메모리 free
+      free(s[i]); 
+    }
 }
