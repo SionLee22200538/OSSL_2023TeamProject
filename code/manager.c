@@ -135,7 +135,13 @@ int delete_customer(customer_t *s[], int index, int count) {
 }
 
 int pay(customer_t *s[], int index, int count) {
-
+  if (index < 0 || index >= count) {
+    printf("범위 초과!\n");
+    return 0;
+  }
+  else if (s[index] == NULL)
+    printf("결제할 데이터가 없습니다.\n");
+  else{
     printf("\n[정산하기]\n");
     printf("이름: %s\n", s[index]->name);
     printf("좌석 번호: %d\n", s[index]->seat_num);
@@ -145,5 +151,6 @@ int pay(customer_t *s[], int index, int count) {
       s[i] = s[i + 1];
     }
     printf("결제가 완료되었습니다!\n");
+  }
   return 1;
 }
