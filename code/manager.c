@@ -182,3 +182,4 @@ void nameSearch(customer_t *s[], int count, char *name) {
     }
   }
 }
+void draw(customer_t *s[], int row, int column){}
