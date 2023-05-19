@@ -103,3 +103,18 @@ void read_customer(customer_t *s[], int count) {
     printf("==============================\n");
   }
 }
+
+void saveFile(customer_t *s[], int count) {
+  FILE *fp = fopen("customer.txt", "wt");
+  if (fp == NULL) {
+    printf("파일 열기 실패!\n");
+    return;
+  }
+
+  for (int i = 0; i < count; i++) {
+    fprintf(fp, "%s %s %c %s %d %s %d\n", s[i]->name, s[i]->id, s[i]->gender,
+            s[i]->phoneNumber, s[i]->age, s[i]->startTime, s[i]->seat_num);
+  }
+  fclose(fp);
+  printf("=> 저장 성공!\n");
+}
