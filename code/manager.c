@@ -22,3 +22,24 @@ int selectMenu() {
   scanf("%d", &menu);
   return menu;
 }
+
+int add_customer(customer_t *s) {
+  printf("\n[고객 추가]\n");
+  printf("이름: ");
+  scanf("%s", s->name);
+  printf("ID: ");
+  scanf("%s", s->id);
+  printf("성별(M/F): ");
+  getchar(); // Clear the newline character from the previous input
+  scanf("%c", &(s->gender));
+  printf("전화번호: ");
+  scanf("%s", s->phoneNumber);
+  printf("나이: ");
+  scanf("%d", &(s->age));
+  printf("입장 시간: ");
+  scanf("%s", s->startTime);
+  printf("좌석 번호: ");
+  scanf("%d", &(s->seat_num));
+
+  return 1;
+}
