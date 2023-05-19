@@ -118,3 +118,12 @@ void saveFile(customer_t *s[], int count) {
   fclose(fp);
   printf("=> 저장 성공!\n");
 }
+int delete_customer(customer_t *s[], int index, int count) {
+
+  free(s[index]);
+  for (int i = index; i < count - 1; i++) {
+    s[i] = s[i + 1];
+  }
+  printf("=> 삭제되었습니다!\n");
+  return 1;
+}
