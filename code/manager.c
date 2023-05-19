@@ -89,3 +89,17 @@ int read_file(customer_t *s[]) {
   fclose(fp);
   return count;
 }
+void read_customer(customer_t *s[], int count) {
+  printf("\n[고객 정보 조회]\n");
+  for (int i = 0; i < count; i++) {
+    printf("========== 고객 정보 %d ==========\n", i + 1);
+    printf("이름: %s\n", s[i]->name);
+    printf("ID: %s\n", s[i]->id);
+    printf("성별: %c\n", s[i]->gender);
+    printf("전화번호: %s\n", s[i]->phoneNumber);
+    printf("나이: %d\n", s[i]->age);
+    printf("입장 시간: %s\n", s[i]->startTime);
+    printf("좌석 번호: %d\n", s[i]->seat_num);
+    printf("==============================\n");
+  }
+}
