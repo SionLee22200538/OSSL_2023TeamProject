@@ -166,3 +166,19 @@ void auto_Off(customer_t *s[], int count) {
   }
   printf("총 %d개의 미성년자 컴퓨터가 종료되었습니다.\n", underageCount);
 }
+void nameSearch(customer_t *s[], int count, char *name) {
+  printf("\n[이름 검색]\n");
+  int searchCount = 0;
+  for (int i = 0; i < count; i++) {
+    if (strcmp(s[i]->name, name) == 0) {
+      printf("========== 고객 정보 %d ==========\n", i + 1);
+      printf("이름: %s\n", s[i]->name);
+      printf("ID: %s\n", s[i]->id);
+      printf("성별: %c\n", s[i]->gender);
+      printf("전화번호: %s\n", s[i]->phoneNumber);
+      printf("나이: %d\n", s[i]->age);
+      printf("입장 시간: %s\n", s[i]->startTime);
+      printf("좌석 번호: %d\n", s[i]->seat_num);
+    }
+  }
+}
