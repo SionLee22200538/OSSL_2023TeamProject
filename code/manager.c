@@ -188,6 +188,36 @@ void write(customer_t *s[], int count, int total){
 
 }
 
-void draw(customer_t *s[], int row, int column){
+void draw(customer_t *s[], int row, int column, int count){
+    int total=row*column;
+
+    char seat[total];
+    for(int i=0; i < total; i++){
+        seat[i] = 'x';
+        for(int j=0; j< count; j++) {
+            if( i == (s[j]->seat_num)-1)
+                seat[i] = 'o';
+        }
+    }
+
+    for(int i=0; i<row; i++) {
+      for(int j=0; j<column; j++){
+        printf("*********");
+      }printf("\n");
+      for(int j=0; j<column; j++){
+        printf("*  %2d   *",(j+1)+column*(i));
+      }printf("\n");
+      for(int j=0; j<column; j++){
+          printf("*   %c   *",seat[((j+1)+column*(i))-1]);
+      }printf("\n");
+      for(int j=0; j<column; j++){
+          printf("*       *");
+      }printf("\n");
+      for(int j=0; j<column; j++){
+          printf("*********");
+      }
+      printf("\n");
+    
+    }
     
 }
