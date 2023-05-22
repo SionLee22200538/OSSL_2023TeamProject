@@ -91,7 +91,7 @@ int main(void) {
       write(s,count,total);
     }
     else if (menu == 11){
-      draw(s,row,column);
+      draw(s,row,column,count);
     }
   }
   
