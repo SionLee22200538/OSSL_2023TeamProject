@@ -85,9 +85,12 @@ int main(void) {
       int isPay = pay(s, num-1, count); // add_customer()함수에서 데이터가 변경되었는지 확인 
     }
     else if (menu == 9) {
-      current(s,count);
+      current(s,count,total);
     }
     else if (menu == 10){
+      write(s,count,total);
+    }
+    else if (menu == 11){
       draw(s,row,column);
     }
   }
