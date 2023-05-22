@@ -23,7 +23,7 @@ int selectMenu() {
   return menu;
 }
 
-int add_customer(customer_t *s) {
+int add_customer(customer_t *s, int total) {
   printf("\n[고객 추가]\n");
   printf("이름: ");
   scanf("%s", s->name);
@@ -39,33 +39,11 @@ int add_customer(customer_t *s) {
   scanf("%d", &(s->age));
   printf("입장 시간: ");
   scanf("%s", s->startTime);
-  printf("좌석 번호: ");
+  printf("좌석 번호 (1~%d): ", total);
   scanf("%d", &(s->seat_num));
   return 1;
 }
 
-int read_file(customer_t *s[]) {
-  FILE *fp;
-  int count = 0;
-  fp = fopen("customer.txt", "r");
-  if (fp == NULL) {
-    printf("파일 열기 실패!\n");
-    return 0;
-  }
-  while (1) {
-    s[count] = (customer_t*)malloc(sizeof(customer_t));
-    int data = fscanf(fp, "%[^,],%[^,],%c %[^,],%d %c %f %c\n", s[count]->st_name, s[count]->st_id, &s[count]->fm, s[count]->st_major, &s[count]->abs_num, &s[count]->pf, &s[count]->grade, &s[count]->assignment);
-    if (data != 8) {
-      free(s[count]);
-      break;
-    }
-    count++;
-  }
-  if (count == 0) printf("불러올 데이터가 없습니다.\n");
-  else printf("%d명의 데이터 불러오기 성공!\n",count);
-  fclose(fp);
-  return count;
-}
 int read_file(customer_t *s[]) {
   FILE *fp = fopen("customer.txt", "rt");
   int count = 0;
@@ -89,6 +67,7 @@ int read_file(customer_t *s[]) {
   fclose(fp);
   return count;
 }
+
 void read_customer(customer_t *s[], int count) {
   printf("\n[고객 정보 조회]\n");
   for (int i = 0; i < count; i++) {
@@ -118,20 +97,29 @@ void saveFile(customer_t *s[], int count) {
   fclose(fp);
   printf("=> 저장 성공!\n");
 }
+
 int delete_customer(customer_t *s[], int index, int count) {
   if (index < 0 || index >= count) {
-    printf("범위 초과!");
+    printf("삭제할 데이터가 없습니다.\n");
     return 0;
   }
-  else if (count==0)
-      printf("삭제할 데이터가 없습니다.\n");
-
   free(s[index]);
   for (int i = index; i < count - 1; i++) {
     s[i] = s[i + 1];
   }
   printf("=> 삭제되었습니다!\n");
   return 1;
+}
+
+void current(customer_t *s[], int count) {
+  printf("\n[PC방 전체 확인]\n");
+  printf("------------------------------------\n");
+  for (int i = 0; i < count; i++) {
+    printf("좌석 번호: %d\t", s[i]->seat_num);
+    printf("이름: %s\t", s[i]->name);
+    printf("입장 시간: %s\n", s[i]->startTime);
+  }
+  printf("------------------------------------\n");
 }
 
 int pay(customer_t *s[], int index, int count) {
@@ -154,6 +142,7 @@ int pay(customer_t *s[], int index, int count) {
   }
   return 1;
 }
+
 void auto_Off(customer_t *s[], int count) {
   printf("\n[미성년자 강제 종료]\n");
   int underageCount = 0;
@@ -166,6 +155,7 @@ void auto_Off(customer_t *s[], int count) {
   }
   printf("총 %d개의 미성년자 컴퓨터가 종료되었습니다.\n", underageCount);
 }
+
 void nameSearch(customer_t *s[], int count, char *name) {
   printf("\n[이름 검색]\n");
   int searchCount = 0;
