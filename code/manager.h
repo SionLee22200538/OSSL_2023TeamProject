@@ -16,9 +16,10 @@ void saveFile(customer_t *s[], int count); //현재까지 구조체 배열에 �
 int delete_customer(customer_t *s[], int index, int count); //구조체 배열에서 데이터를 삭제하는 함수
 
 
-void current(customer_t *s[], int count); //PC방 전체의 현재 상황을 표시
+void current(customer_t *s[], int count, int total);//PC방 전체의 현재 상황을 표시
 int pay(customer_t *s[], int index, int count); //구조체 배열에서 데이터를 삭제하는 함수
 void auto_Off(customer_t *s[], int count); //19세 미만 고객의 컴퓨터를 종료시키고 정산시키는 함수
 int selectMenu(); //메뉴창을 출력하고 사용자가 어떤 동작을 선택했는지 return하는 함수
 void nameSearch(customer_t *s[], int count, char *name); //이름을 검색하여 해당 고객의 데이터를 출력
 void draw(customer_t *s[], int row, int column); //PC방 전체의 현재 상황을 표시
+void write(customer_t *s[], int count, int total);// 현재 pc방 상황에 대해서 script로 표현한다 ex)  1. o  2. x  3. x ...
