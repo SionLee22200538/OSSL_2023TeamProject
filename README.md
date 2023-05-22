@@ -12,6 +12,8 @@
 
 ## Introduction
 2023년 1학기 OSS 2분반 이시온, 이윤석님의 팀 프로젝트 입니다!
+<img width="1000" alt="화면 캡처 2023-05-22 06023733" src="https://github.com/SionLee22200538/OSSL_2023TeamProject/assets/95155630/13770436-2ad4-4692-b939-5bc5c1fa8d6f">
+
 ![pc방](https://github.com/SionLee22200538/OSSL_2023TeamProject/blob/main/image/PCRoom.jpeg)
 
 
