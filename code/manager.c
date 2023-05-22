@@ -16,7 +16,8 @@ int selectMenu() {
   printf("7. 미성년자 강제 종료\n");
   printf("8. 정산하기\n");
   printf("9. PC방 전체 조회\n");
-  printf("10. 좌석 확인\n");
+  printf("10. 좌석 이용 현황\n");
+  printf("11. 좌석표\n");
   printf("0. 종료\n\n");
   printf("=> 원하는 메뉴 입력: ");
   scanf("%d", &menu);
@@ -111,7 +112,7 @@ int delete_customer(customer_t *s[], int index, int count) {
   return 1;
 }
 
-void current(customer_t *s[], int count) {
+void current(customer_t *s[], int count, int total) {
   printf("\n[PC방 전체 확인]\n");
   printf("------------------------------------\n");
   for (int i = 0; i < count; i++) {
@@ -172,4 +173,21 @@ void nameSearch(customer_t *s[], int count, char *name) {
     }
   }
 }
-void draw(customer_t *s[], int row, int column){}
+void write(customer_t *s[], int count, int total){
+    char seat[total];
+    for(int i=0; i < total; i++){
+        seat[i] = 'x';
+        for(int j=0; j< count; j++) {
+            if( i == (s[j]->seat_num)-1)
+                seat[i] = 'o';
+        }
+
+        printf(" %d. %c ", i+1, seat[i]);
+
+    }
+
+}
+
+void draw(customer_t *s[], int row, int column){
+    
+}
